@@ -326,7 +326,7 @@ const HomePage = () => {
         </div>
         <div className="flex flex-col items-center">
           <h2> monthly fee </h2>
-          <span>$0.0</span>
+          <span>${subscriptionFee}</span>
         </div>
         <div className="flex flex-col items-center">
           <h2>deposit fee </h2>
@@ -334,7 +334,7 @@ const HomePage = () => {
         </div>
         <div className="flex flex-col items-center">
           <h2>amount due today </h2>
-          <span>$0.0</span>
+          <span>${subscriptionFee}</span>
         </div>
 
         <button

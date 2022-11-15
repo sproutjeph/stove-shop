@@ -190,11 +190,13 @@ const Navbar = () => {
                       className="ml-auto flex-shrink-0 rounded-full  p-1 text-white relative "
                     >
                       <span className="sr-only">My Cart</span>
-                      <ShoppingCartIcon
-                        className="h-10 w-10"
-                        aria-hidden="true"
-                        onClick={() => navigateTo("/cart")}
-                      />
+                      <Disclosure.Button>
+                        <ShoppingCartIcon
+                          className="h-10 w-10"
+                          aria-hidden="true"
+                          onClick={() => navigateTo("/cart")}
+                        />
+                      </Disclosure.Button>
                       <span className="inline-block absolute w-5 h-5 rounded-full right-[-9px] top-[-6px] bg-white text-primary  items-center ">
                         {totalCartItems}
                       </span>
