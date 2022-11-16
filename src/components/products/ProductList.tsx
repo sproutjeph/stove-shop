@@ -29,13 +29,13 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
   }
 
   return (
-    <section className="h-screen" id="product">
+    <section className="h-screen " id="product">
       <div className="">
         <h2 className="text-4xl text-center text-primary tracking-wider">
           Products
         </h2>
       </div>
-      <div className="px-4 md:px-8 grid grid-cols-12 gap-6 mt-5 ">
+      <div className="px-4 md:px-8 grid grid-cols-12 gap-6 mt-5 overflow-y-scroll h-[90%] scrollbar-hide">
         <div className="intro-y col-span-12 overflow-auto lg:overflow-visible mb-8">
           <table className=" table table-report -mt-2">
             <thead>
@@ -51,11 +51,11 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
                 <th className="text-center whitespace-nowrap">QTY</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {products
                 .filter((product) => product.category === "product")
                 .map((product) => (
-                  <tr key={product.id} className="intro-x">
+                  <tr key={product.id} className="intro-x ">
                     <td className="text-center">
                       <div className="flex">
                         <div className="w-10 h-10 image-fit zoom-in">

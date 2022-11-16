@@ -23,7 +23,20 @@ const initialState: ProductsState = {
 const productSlice = createSlice({
   name: "produts",
   initialState,
-  reducers: {},
+  reducers: {
+    setIncludedItemsToSubscriptionPlane: (
+      state,
+      { payload }: PayloadAction<string>
+    ) => {
+      const item = state.products.find(
+        (includedItem) => includedItem.name === "E-Mail - Monthly License"
+      );
+
+      if (payload === "STOVE ULTIMATE Monthly Subscription") {
+        item!.includedInPlane = true;
+      }
+    },
+  },
 
   // extraReducers: (builder) => {
   //   builder.addCase(getProducts.fulfilled, (state, { payload }) => {
@@ -35,6 +48,6 @@ const productSlice = createSlice({
   // },
 });
 
-export const {} = productSlice.actions;
+export const { setIncludedItemsToSubscriptionPlane } = productSlice.actions;
 
 export default productSlice.reducer;

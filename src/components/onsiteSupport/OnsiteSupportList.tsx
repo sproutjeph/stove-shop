@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import imgaeHolder from "../../assets/images/200x200.jpg";
 import { useAppSelector, useAppDispatch } from "../../stores/hooks";
 import { addToCart } from "../../featuers/cart/cartSlice";
@@ -11,9 +11,10 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import { IProduct } from "../../utils/types";
+import { setIncludedItemsToSubscriptionPlane } from "../../featuers/products/productSlice";
 
 const OnsiteSupportList = ({ setShowOnsiteSupportModal }: any) => {
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.product);
 
   function onChangeHandler(
@@ -21,9 +22,21 @@ const OnsiteSupportList = ({ setShowOnsiteSupportModal }: any) => {
     support: IProduct
   ) {
     if (e.target.checked === true) {
-      dispath(addToCart({ cartItem: support, qty: 1 }));
+      dispatch(addToCart({ cartItem: support, qty: 1 }));
     }
   }
+  function isIncluded() {
+    return products
+      .filter((support) => support.category === "support")
+      .map((includedItem) => {
+        if (includedItem.includedInPlane === true)
+          return dispatch(addToCart({ cartItem: includedItem, qty: 1 }));
+      });
+  }
+  useEffect(() => {
+    isIncluded();
+  }, []);
+
   return (
     <>
       <section className="" id="support">
@@ -83,6 +96,7 @@ const OnsiteSupportList = ({ setShowOnsiteSupportModal }: any) => {
                             id="product-status-active"
                             className="check-box"
                             type="checkbox"
+                            defaultChecked={support.includedInPlane}
                             onChange={(e) => {
                               onChangeHandler(e, support);
                               console.log(e.target.checked);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import imgaeHolder from "../../assets/images/200x200.jpg";
 import { useAppSelector, useAppDispatch } from "../../stores/hooks";
 import { addToCart, removeItem } from "../../featuers/cart/cartSlice";
@@ -9,7 +9,9 @@ import {
   ChevronRightIcon,
   PlusIcon,
 } from "@heroicons/react/24/outline";
+
 import { IProduct } from "../../utils/types";
+import { setIncludedItemsToSubscriptionPlane } from "../../featuers/products/productSlice";
 
 const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
   const dispath = useAppDispatch();
@@ -22,10 +24,20 @@ const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
     if (e.target.checked === true) {
       dispath(addToCart({ cartItem: cartItem, qty: 1 }));
     }
-    // if (!e.target.checked ) {
-    //   dispath(addToCart({ cartItem: cartItem, qty: 1 }));
-    // }
   }
+  function isIncluded() {
+    return products
+      .filter((software) => software.category === "software")
+      .map((includedItem) => {
+        if (includedItem.includedInPlane === true)
+          return dispath(addToCart({ cartItem: includedItem, qty: 1 }));
+      });
+  }
+  useEffect(() => {
+    isIncluded();
+    setIncludedItemsToSubscriptionPlane("STOVE ULTIMATE Monthly Subscription");
+  }, [products]);
+
   return (
     <>
       <section className="h-screen" id="software">
@@ -88,6 +100,7 @@ const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
                             id="product-status-active"
                             className="check-box"
                             type="checkbox"
+                            defaultChecked={software.includedInPlane}
                             onChange={(e) => {
                               onChangeHandler(e, software);
                               console.log(e.target.checked);

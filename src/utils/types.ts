@@ -19,4 +19,6 @@ export interface IProduct {
   product_image: string;
   amount: number;
   category: string;
+  planeItems?: string[];
+  includedInPlane: boolean;
 }

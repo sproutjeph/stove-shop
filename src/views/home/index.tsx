@@ -23,8 +23,13 @@ import {
   CheckBadgeIcon,
 } from "@heroicons/react/24/outline";
 import { useAppDispatch, useAppSelector } from "../../stores/hooks";
-import { calculateTotals } from "../../featuers/cart/cartSlice";
+import {
+  calculateTotals,
+  selectSubscriptionPrice,
+} from "../../featuers/cart/cartSlice";
+import { setIncludedItemsToSubscriptionPlane } from "../../featuers/products/productSlice";
 import PricingModal from "../pricing/PricingModal";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const navigateTo = useNavigate();
@@ -93,11 +98,7 @@ const HomePage = () => {
             .map((subscription) => (
               <div
                 key={subscription.id}
-                className=" hover:bg-primary bg-white rounded-md px-8 py-4 cursor-pointer group"
-                onClick={() => {
-                  setSubcriptionId(subscription.id);
-                  setShowPricingModal(true);
-                }}
+                className=" hover:bg-primary bg-white rounded-md px-8 py-4  group"
               >
                 <div className="flex">
                   <div className="rounded-full bg-[#edf6ff] h-24 w-24 flex items-center justify-center">
@@ -115,15 +116,31 @@ const HomePage = () => {
                   ${subscription.price}
                   <span className="text-sm">/ month</span>
                 </h2>
-                <button
-                  className="btn bg-white btn-outline shadow-md mt-5 text-sm tracking-widest"
-                  onClick={() => {
-                    // setSubcriptionId(subscription.id);
-                    // dispatch(openPricingModal());
-                  }}
-                >
-                  Details
-                </button>
+                <div className="flex justify-between">
+                  <button
+                    className="btn bg-white btn-outline shadow-md mt-5 text-sm tracking-widest"
+                    onClick={() => {
+                      setSubcriptionId(subscription.id);
+                      setShowPricingModal(true);
+                    }}
+                  >
+                    Details
+                  </button>
+                  <button
+                    className="group-hover:bg-warning btn bg-primary text-white ml-auto shadow-md mt-5 text-sm tracking-widest"
+                    onClick={() => {
+                      dispatch(
+                        setIncludedItemsToSubscriptionPlane(subscription?.name)
+                      );
+                      dispatch(
+                        selectSubscriptionPrice(Number(subscription?.price))
+                      );
+                      toast(`${subscription?.name} Added`);
+                    }}
+                  >
+                    Order Now
+                  </button>
+                </div>
               </div>
             ))}
         </div>

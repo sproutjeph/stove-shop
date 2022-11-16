@@ -43,19 +43,6 @@ export const starterKits: IStarterKit[] = [
   },
 ];
 
-export const basicItems = [
-  "Cloud Based POS",
-  "Full Reporting",
-  " Employee Time Tracking",
-  "Scheduling",
-  "Online Ordering (+25/mo)",
-  " Payroll (+35/mo)",
-  " Kiosk Ordering (+35/mo)",
-  "Gift Cards ($20/mo)",
-  "eservations+ (+35/mo)",
-  " KDS (+$15/mo)",
-];
-
 export const products: IProduct[] = [
   {
     id: "153bd7ae-f099-737a-8963-623df0109300",
@@ -72,6 +59,7 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/939A59EC-A123-5B68-41E8-C2B556B775F3_ts2-single.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: false,
   },
 
   {
@@ -89,6 +77,7 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/79C7480E-E59C-6E82-AF8A-5BF99D0F2D13_p9-1.png",
     amount: 0,
     category: "product",
+    includedInPlane: false,
   },
   {
     id: "5ea1841b-2658-5f88-bffc-623c6a8e28c2",
@@ -106,6 +95,7 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/9E014B99-3238-EF30-F9E4-E430D3AA9E35_epson-tmt88viiblack.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: false,
   },
 
   {
@@ -124,6 +114,7 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/ABAE0977-22C9-4CCA-25A6-18B230EA23AD_epson-tmm30iiblack.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: false,
   },
   {
     id: "85128fe4-25a1-8c64-4f67-623c6915201b",
@@ -140,6 +131,7 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/1CDE5F3B-06FA-85BC-4B28-D0A80A6E269C_ts2-single.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: false,
   },
 
   {
@@ -158,6 +150,23 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/8FC8DA12-A960-C974-FA20-12C66B70947D_ts2-dual.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: false,
+  },
+  {
+    id: "61b166c6-4491-9c5e-5f03-6352bb3b8dec",
+    name: "Gift Cards - Monthly License",
+    description: "",
+    part_number: "GCLIC",
+    category: "product",
+    type: "Service",
+    cost: "20",
+    cost_usdollar: "20",
+    currency_id: "-99",
+    price: "20",
+    price_usdollar: "20",
+    product_image: "",
+    amount: 0,
+    includedInPlane: true,
   },
 
   // softwares
@@ -175,6 +184,7 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     category: "software",
+    includedInPlane: false,
   },
   {
     id: "b82c885e-197f-1691-cb7a-623c6fee2937",
@@ -190,6 +200,7 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     category: "software",
+    includedInPlane: false,
   },
 
   {
@@ -206,6 +217,7 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     category: "software",
+    includedInPlane: false,
   },
   {
     id: "d7ac7e0d-8aae-eb8a-97f4-6352b87daef4",
@@ -221,6 +233,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "software",
     amount: 0,
+    includedInPlane: true,
   },
   {
     id: "eb811bda-f2fb-e8b7-9c63-631b837ce589",
@@ -236,6 +249,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "software",
     amount: 0,
+    includedInPlane: true,
   },
 
   {
@@ -252,6 +266,23 @@ export const products: IProduct[] = [
     price_usdollar: "20",
     product_image: "",
     amount: 0,
+    includedInPlane: false,
+  },
+  {
+    id: "ec09d953-d16c-06a1-0de1-6352bbed0308",
+    name: "KDS - Monthly License",
+    description: "",
+    part_number: "KDSLIC",
+    type: "Service",
+    cost: "15",
+    cost_usdollar: "15",
+    currency_id: "-99",
+    price: "15",
+    price_usdollar: "15",
+    product_image: "",
+    category: "software",
+    amount: 0,
+    includedInPlane: false,
   },
 
   // support
@@ -270,6 +301,7 @@ export const products: IProduct[] = [
     product_image: "TBD BASED ON NEEDS/LEVEL",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
   {
     id: "8363c4dc-051c-d3d9-3270-62472aeddf4a",
@@ -285,6 +317,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
 
   {
@@ -301,6 +334,7 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     category: "support",
+    includedInPlane: false,
   },
 
   {
@@ -317,6 +351,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
   {
     id: "dec57a5c-f8e6-444b-7623-6352bb58ec5f",
@@ -332,6 +367,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
   {
     id: "c37f082d-3204-8e84-b94f-6352bb6c484b",
@@ -347,6 +383,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: true,
   },
 
   {
@@ -363,6 +400,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
 
   {
@@ -379,6 +417,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
+    includedInPlane: false,
   },
   // monthly subscription
 
@@ -396,6 +435,19 @@ export const products: IProduct[] = [
     product_image: "GiftIcon",
     category: "subscription",
     amount: 0,
+    planeItems: [
+      "Cloud Based POS",
+      "Full Reporting",
+      " Employee Time Tracking",
+      "Scheduling",
+      "Online Ordering (+25/mo)",
+      " Payroll (+35/mo)",
+      " Kiosk Ordering (+35/mo)",
+      "Gift Cards ($20/mo)",
+      "eservations+ (+35/mo)",
+      " KDS (+$15/mo)",
+    ],
+    includedInPlane: false,
   },
 
   {
@@ -412,6 +464,18 @@ export const products: IProduct[] = [
     product_image: "TrophyIcon",
     category: "subscription",
     amount: 0,
+    planeItems: [
+      "Everything from Basic",
+      "Online Ordering",
+      "Payroll",
+      "Kiosk Ordering",
+      "Mobile Ordering and Checkout",
+      "E-Mail Marketing",
+      "Smart Ordering AI (+35/mo)",
+      "Reservations+ (+35/mo)",
+      "Gift Cards (+$20/mo)",
+    ],
+    includedInPlane: false,
   },
   {
     id: "9bd90acd-bbe9-f8f0-c2d9-6314e4090f92",
@@ -428,5 +492,16 @@ export const products: IProduct[] = [
     product_image: "RocketLaunchIcon",
     category: "subscription",
     amount: 0,
+    planeItems: [
+      "Everything from Ultimate",
+      "E-Mail Marketing",
+      "Delivery Dispatch",
+      "Reservations+",
+      "3rd Party Order Aggregation",
+      "SMS Marketing",
+      "Smart Ordering AI",
+      "Gift Cards",
+    ],
+    includedInPlane: false,
   },
 ];

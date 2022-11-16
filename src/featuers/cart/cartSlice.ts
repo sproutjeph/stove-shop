@@ -80,7 +80,10 @@ const cartSlice = createSlice({
       cartState.cartItems = [];
     },
 
-    selectSubscription: (cartState, { payload }: PayloadAction<number>) => {
+    selectSubscriptionPrice: (
+      cartState,
+      { payload }: PayloadAction<number>
+    ) => {
       cartState.subscriptionFee = payload;
     },
   },
@@ -93,7 +96,7 @@ export const {
   calculateTotals,
   clearCart,
   removeItem,
-  selectSubscription,
+  selectSubscriptionPrice,
 } = cartSlice.actions;
 export const selectCartState = (state: RootState) => state.cart;
 // export const selectCartItems = (state: RootState) => state.cart.cartItems;

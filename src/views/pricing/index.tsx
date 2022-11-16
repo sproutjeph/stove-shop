@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
-import { basicItems } from "../../utils/data";
-import { selectSubscription } from "../../featuers/cart/cartSlice";
+import { selectSubscriptionPrice } from "../../featuers/cart/cartSlice";
 import { useAppSelector, useAppDispatch } from "../../stores/hooks";
 import {
   TrophyIcon,
@@ -40,7 +39,7 @@ const PricingPage = () => {
                   <span className="text-sm">/ month</span>
                 </h2>
                 <ul className="mt-6 flex flex-col gap-4">
-                  {basicItems.map((item, index) => (
+                  {subscription.planeItems?.map((item, index) => (
                     <li className="flex items-center gap-1" key={index + item}>
                       {" "}
                       <CheckIcon className="w-5 h-5" />
@@ -51,7 +50,9 @@ const PricingPage = () => {
                 <button
                   className="btn btn-primary shadow-md mt-5 text-sm tracking-widest"
                   onClick={() => {
-                    dispatch(selectSubscription(Number(subscription.price)));
+                    dispatch(
+                      selectSubscriptionPrice(Number(subscription.price))
+                    );
                     toast(`${subscription.name} Added`);
                   }}
                 >

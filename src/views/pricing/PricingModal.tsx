@@ -1,7 +1,6 @@
-import { basicItems } from "../../utils/data";
 import { toast } from "react-toastify";
 import { Modal } from "../../components/modal/Modal";
-import { selectSubscription } from "../../featuers/cart/cartSlice";
+import { selectSubscriptionPrice } from "../../featuers/cart/cartSlice";
 import { CheckIcon, TrophyIcon } from "@heroicons/react/24/outline";
 import { useAppSelector, useAppDispatch } from "../../stores/hooks";
 const PricingModal = ({ id, showPricingModal, setShowPricingModal }: any) => {
@@ -39,7 +38,7 @@ const PricingModal = ({ id, showPricingModal, setShowPricingModal }: any) => {
               </h2>
               <hr />
               <ul className="mt-6 grid grid-cols-2 gap-4 text-black">
-                {basicItems.map((item, index) => (
+                {subscription?.planeItems?.map((item, index) => (
                   <li className="flex items-center gap-1" key={index + item}>
                     {" "}
                     <CheckIcon className="w-5 h-5" />
@@ -51,7 +50,9 @@ const PricingModal = ({ id, showPricingModal, setShowPricingModal }: any) => {
                 className="btn btn-primary shadow-md mt-5 text-sm tracking-widest"
                 onClick={() => {
                   setShowPricingModal(false);
-                  dispatch(selectSubscription(Number(subscription?.price)));
+                  dispatch(
+                    selectSubscriptionPrice(Number(subscription?.price))
+                  );
                   toast(`${subscription?.name} Added`);
                 }}
               >
