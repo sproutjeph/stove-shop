@@ -294,7 +294,7 @@ const HomePage = () => {
           showProductDetailsModal={showProductDetailsModal}
         />
       </div>
-      <div className="mt-6">
+      <div className="mt-20 ">
         <Payment />
       </div>
       <div className=" flex justify-center mx-8 border border-b-gray-300 pb-4 gap-4 mt-20 md:mt-0">
@@ -305,7 +305,7 @@ const HomePage = () => {
         </a>
       </div>
 
-      <div className="mt-6 ">
+      <div className="mt-20 ">
         <SoftwareAddOnList
           setShowSoftwareAddOnModal={setShowSoftwareAddOnModal}
         />
@@ -314,7 +314,7 @@ const HomePage = () => {
           showSoftwareAddOnModal={showSoftwareAddOnModal}
         />
       </div>
-      <div className=" flex justify-center mx-8 border border-b-gray-300 pb-4 gap-4 mt-10 md:mt-0">
+      <div className=" flex justify-center mx-8 border border-b-gray-300 pb-4 gap-4 mt-20">
         <a href="#support">
           <button className="btn btn-primary shadow-md  text-sm ">
             Add Support
