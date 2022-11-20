@@ -7,7 +7,11 @@ import {
   calculateTotals,
   removeItem,
 } from "../../featuers/cart/cartSlice";
-import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
+import {
+  PlusIcon,
+  MinusIcon,
+  ArrowLeftIcon,
+} from "@heroicons/react/24/outline";
 
 const CartPage = () => {
   const navigateTo = useNavigate();
@@ -21,7 +25,7 @@ const CartPage = () => {
       <div className="mt-2 justify-center capitalize   bg-white  items-center  p-4 grid grid-cols-2 gap-4 md:flex md:gap-10">
         <div className="flex flex-col items-center">
           <h2>one time fee </h2>
-          <span>$0.0</span>
+          <span>${totalPrice}</span>
         </div>
         <div className="flex flex-col items-center">
           <h2> monthly fee </h2>
@@ -36,6 +40,14 @@ const CartPage = () => {
           <span>$0.0</span>
         </div>
       </div>
+      <button
+        className="btn btn-primary ml-8 my-4 py-[2px] px-4"
+        title="Back to Products"
+        onClick={() => navigateTo("../")}
+      >
+        <ArrowLeftIcon className="h-6 w-6 text-white  cursor-pointer" />
+      </button>
+
       <div className="p-4 md:p-8 ">
         <div className=" max-w-xl md:max-w-2xl text-center mx-auto">
           <h2 className="text-3xl font-thin tracking-wide">

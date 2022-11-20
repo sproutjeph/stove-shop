@@ -184,7 +184,7 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     category: "software",
-    includedInPlane: false,
+    includedInPlane: true,
   },
   {
     id: "b82c885e-197f-1691-cb7a-623c6fee2937",
@@ -282,7 +282,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "software",
     amount: 0,
-    includedInPlane: false,
+    includedInPlane: true,
   },
 
   // support
@@ -351,7 +351,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
-    includedInPlane: false,
+    includedInPlane: true,
   },
   {
     id: "dec57a5c-f8e6-444b-7623-6352bb58ec5f",
@@ -367,7 +367,7 @@ export const products: IProduct[] = [
     product_image: "",
     category: "support",
     amount: 0,
-    includedInPlane: false,
+    includedInPlane: true,
   },
   {
     id: "c37f082d-3204-8e84-b94f-6352bb6c484b",

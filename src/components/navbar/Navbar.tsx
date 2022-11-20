@@ -38,9 +38,9 @@ const Navbar = () => {
   };
 
   const userNavigation = [
-    { name: "Your Profile", action: null },
-    { name: "Settings", action: null },
-    { name: "Sign out", action: logoutUser },
+    { name: "Your Profile" },
+    { name: "Settings" },
+    { name: "Sign out" },
   ];
 
   return (
@@ -116,7 +116,11 @@ const Navbar = () => {
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <button
-                                    onClick={() => item.action && item.action()}
+                                    onClick={() => {
+                                      if (item.name === "Your Profile") {
+                                        navigateTo("/profile");
+                                      }
+                                    }}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
@@ -207,7 +211,11 @@ const Navbar = () => {
                       <Disclosure.Button
                         key={item.name}
                         as="button"
-                        onClick={() => item.action && item.action()}
+                        onClick={() => {
+                          if (item.name === "Your Profile") {
+                            navigateTo("/profile");
+                          }
+                        }}
                         className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-primary"
                       >
                         {item.name}

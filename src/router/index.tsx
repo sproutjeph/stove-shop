@@ -6,6 +6,7 @@ import {
   PricingPage,
   CartPage,
   CheckOut,
+  ProfileLayout,
 } from "../views";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/profile" element={<ProfileLayout />} />
 
         <Route path="/error-page" element={<ErrorPage />} />
         <Route path="/*" element={<ErrorPage />} />

@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { IProduct } from "../../utils/types";
-import { setIncludedItemsToSubscriptionPlane } from "../../featuers/products/productSlice";
+import { toast } from "react-toastify";
 
 const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
   const dispath = useAppDispatch();
@@ -23,6 +23,7 @@ const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
   ) {
     if (e.target.checked === true) {
       dispath(addToCart({ cartItem: cartItem, qty: 1 }));
+      toast(`${cartItem.name} added to cart`);
     }
   }
   function isIncluded() {
@@ -35,7 +36,6 @@ const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
   }
   useEffect(() => {
     isIncluded();
-    setIncludedItemsToSubscriptionPlane("STOVE ULTIMATE Monthly Subscription");
   }, [products]);
 
   return (
@@ -103,7 +103,6 @@ const SoftWareAddOnList = ({ setShowSoftwareAddOnModal }: any) => {
                             defaultChecked={software.includedInPlane}
                             onChange={(e) => {
                               onChangeHandler(e, software);
-                              console.log(e.target.checked);
                             }}
                           />
                         </div>

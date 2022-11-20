@@ -10,3 +10,4 @@ export { default as SoftwareAddOnModal } from "./softwareAddOns/SoftwareAddOnMod
 export { default as ProductDetailsModal } from "./products/ProductDetailsModal";
 export { default as Image } from "./ImageComponent/Image";
 export { default as Payment } from "./payments/Payment";
+export { default as ResturantInfo } from "./resturantInfo/ResturantInfo";

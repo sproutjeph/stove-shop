@@ -7,13 +7,24 @@ import {
   GiftIcon,
   RocketLaunchIcon,
   CheckBadgeIcon,
+  ArrowLeftIcon,
 } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 const PricingPage = () => {
+  const navigateTo = useNavigate();
+
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.product);
   const { subscriptionFee } = useAppSelector((state) => state.cart);
   return (
     <>
+      <button
+        className="btn btn-primary ml-8 mt-4 py-[2px] px-4"
+        title="Back to Products"
+        onClick={() => navigateTo("../")}
+      >
+        <ArrowLeftIcon className="h-6 w-6 text-white  cursor-pointer" />
+      </button>
       <div className="p-8">
         {/* <h2 className="text-center text-2xl mb-8">Pricing </h2> */}
         <div className="grid md:grid-cols-3 gap-4">

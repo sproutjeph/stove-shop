@@ -6,6 +6,7 @@ import {
   Payment,
   ProductDetailsModal,
   ProductList,
+  ResturantInfo,
   SoftwareAddOnList,
   SoftwareAddOnModal,
   StarterKit,
@@ -34,7 +35,9 @@ import { toast } from "react-toastify";
 const HomePage = () => {
   const navigateTo = useNavigate();
   const dispatch = useAppDispatch();
-  const { cartItems, subscriptionFee } = useAppSelector((state) => state.cart);
+  const { cartItems, subscriptionFee, totalPrice } = useAppSelector(
+    (state) => state.cart
+  );
   const { products } = useAppSelector((state) => state.product);
 
   const [showKit, setShowkit] = useState({
@@ -57,34 +60,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="rounded-md mx-8 bg-white mt-4 p-4 md:p-8">
-        <h2 className="mb-4 text-xl text-center text-primary md:text-2xl">
-          Please Enter Your Info
-        </h2>
-        <div className="   grid md:grid-cols-12 gap-4 rounded-md">
-          <div className=" md:col-span-6 ">
-            <label htmlFor="input-wizard-1" className="form-label">
-              Restaurant name
-            </label>
-            <input type="text" className="form-control"></input>
-          </div>
-          <div className=" md:col-span-6 ">
-            <label htmlFor="input-wizard-1" className="form-label">
-              Business name
-            </label>
-            <input type="text" className="form-control"></input>
-          </div>
-          <div className=" md:col-span-6 ">
-            <label htmlFor="input-wizard-1" className="form-label">
-              Legal name
-            </label>
-            <input type="text" className="form-control"></input>
-          </div>
-          <div className="md:col-span-6 md:mt-7 md:ml-auto">
-            <button className="btn btn-primary w-full md:w-24 ">Next</button>
-          </div>
-        </div>
-      </div>
+      <ResturantInfo />
 
       <div className="">
         <h2 className="text-center text-2xl mt-6">
@@ -130,12 +106,15 @@ const HomePage = () => {
                     className="group-hover:bg-warning btn bg-primary text-white ml-auto shadow-md mt-5 text-sm tracking-widest"
                     onClick={() => {
                       dispatch(
-                        setIncludedItemsToSubscriptionPlane(subscription?.name)
-                      );
-                      dispatch(
                         selectSubscriptionPrice(Number(subscription?.price))
                       );
                       toast(`${subscription?.name} Added`);
+                      dispatch(
+                        setIncludedItemsToSubscriptionPlane({
+                          subscriptionId: subscription.id,
+                          subFee: subscriptionFee,
+                        })
+                      );
                     }}
                   >
                     Order Now
@@ -339,7 +318,7 @@ const HomePage = () => {
       <div className="mt-2 md:text-lg text-base capitalize  text-white bg-primary  items-center mb-8 p-4 grid grid-cols-2 gap-4 md:flex md:gap-10 md:px-20">
         <div className="flex flex-col items-center">
           <h2>one time fee </h2>
-          <span>$0.0</span>
+          <span>${totalPrice}</span>
         </div>
         <div className="flex flex-col items-center">
           <h2> monthly fee </h2>
