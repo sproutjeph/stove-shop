@@ -1,3 +1,4 @@
+type HeroIcon = (props: React.ComponentProps<"svg">) => JSX.Element;
 export interface IUserRegData {
   firstName?: string;
   lastName?: string;
@@ -21,4 +22,13 @@ export interface IProduct {
   category: string;
   planeItems?: string[];
   includedInPlane: boolean;
+}
+
+export interface IKits {
+  id: string;
+  kitName: string;
+  kitIcon: any;
+  active: boolean;
+  kitImg: string;
+  kitMessage: string;
 }

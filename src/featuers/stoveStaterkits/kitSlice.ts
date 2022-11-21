@@ -1,53 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { kits } from "../../utils/data";
+import { IKits } from "../../utils/types";
 
-interface IKit {
-  kitName:
-    | "CounterTopKit"
-    | "Counter + Customer Kit"
-    | "Guest Self-Service Kit"
-    | "Counter Only Kit"
-    | "Table Kit";
-  isSelected: boolean;
+interface kitState {
+  kits: IKits[];
+  activeKit: IKits;
 }
 
-const initialState: IKit[] = [
-  {
-    kitName: "CounterTopKit",
-    isSelected: true,
-  },
-  {
-    kitName: "Counter + Customer Kit",
-    isSelected: false,
-  },
-  {
-    kitName: "Guest Self-Service Kit",
-    isSelected: false,
-  },
-  {
-    kitName: "Counter Only Kit",
-    isSelected: false,
-  },
-  {
-    kitName: "Table Kit",
-    isSelected: false,
-  },
-];
+const defaultKit = kits.find((kit) => kit.kitName === "Counter Top Kit")!;
+
+const initialState: kitState = {
+  kits: kits,
+  activeKit: defaultKit,
+};
 
 const kitSlice = createSlice({
   name: "kitStater",
   initialState,
   reducers: {
-    selectKit: (state, action: PayloadAction<string>) => {
-      state.map((kit) => {
-        if (kit.kitName === action.payload) {
-          kit.isSelected = true;
-        }
-      });
+    selectKit: (state, { payload }: PayloadAction<string>) => {
+      state.kits.forEach((kit) => (kit.active = false));
+      const selectedKit = state.kits.find((kit) => kit.kitName === payload);
+      if (selectedKit) {
+        selectedKit.active = true;
+        state.activeKit = selectedKit;
+      }
     },
-    deSelectKit: () => {},
   },
 });
 
-export const { deSelectKit, selectKit } = kitSlice.actions;
+export const { selectKit } = kitSlice.actions;
 
 export default kitSlice.reducer;

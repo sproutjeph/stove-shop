@@ -2,9 +2,6 @@ import axios from "axios";
 import { createSlice, PayloadAction, AsyncThunk } from "@reduxjs/toolkit";
 import { products } from "../../utils/data";
 import { IProduct } from "../../utils/types";
-import { selectCartState } from "../cart/cartSlice";
-import { useAppDispatch } from "../../stores/hooks";
-import { store } from "../../stores/store";
 // const url = "";
 
 export interface ProductsState {

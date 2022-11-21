@@ -1,45 +1,60 @@
-import { IProduct } from "./types";
+import { IKits, IProduct } from "./types";
 import counterTopKit from "@/assets/images/counter-top-kit.jpg";
-import handheldKit from "@/assets/images/handheld-kit.jpg";
+import handheldKit from "@/assets/images/gest-service-kit-2.jpg";
 import guestServiceKit from "@/assets/images/guest-service-kit.jpg";
 import {
   TrophyIcon,
   GiftIcon,
-  RocketLaunchIcon,
-  CheckBadgeIcon,
+  DevicePhoneMobileIcon,
+  ComputerDesktopIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
-interface IStarterKit {
-  id: string;
-  kitName: string;
-  kitImg: string;
-  kitMessage: string;
-  active: boolean;
-}
-export const starterKits: IStarterKit[] = [
+export const kits: IKits[] = [
   {
     id: "starterKit-1",
-    kitName: "CounterTopKit",
+    kitName: "Counter Top Kit",
+    kitIcon: "ComputerDesktopIcon",
+    active: true,
     kitImg: counterTopKit,
     kitMessage:
-      "Nice toll to hlep you and your staff focus on Food and hospitality",
-    active: true,
+      "With STOVE your restaurant is always right at your fingertips,offering 24/7 access to our fully interactive management system no matter whereyou are",
   },
   {
     id: "starterKit-2",
-    kitName: "HandHeldKit",
+    kitName: "Guest + Customer Kit",
+    kitIcon: "DevicePhoneMobileIcon",
+    active: false,
     kitImg: handheldKit,
     kitMessage:
-      "Nice toll to hlep you and your staff focus on Food and hospitality",
-    active: false,
+      "Ensuring your guests a seamless and timely dining experience each and every time can be a challenge, but with STOVE you get endless options to tackle even the toughest of guests.",
   },
   {
     id: "starterKit-3",
     kitName: "Guest Self-Service Kit",
+    kitIcon: "GiftIcon",
+    active: false,
     kitImg: guestServiceKit,
     kitMessage:
-      " Nice toll to hlep you and your staff focus on Food and hospitality",
+      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
+  },
+  {
+    id: "starterKit-4",
+    kitName: "Counter Only Kit",
+    kitIcon: "TrophyIcon",
     active: false,
+    kitImg: guestServiceKit,
+    kitMessage:
+      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
+  },
+  {
+    id: "starterKit-5",
+    kitName: "Table Kit",
+    kitIcon: "UserGroupIcon",
+    active: false,
+    kitImg: guestServiceKit,
+    kitMessage:
+      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
   },
 ];
 
@@ -59,6 +74,54 @@ export const products: IProduct[] = [
       "https://crm.stovepos.com/upload/939A59EC-A123-5B68-41E8-C2B556B775F3_ts2-single.jpg",
     amount: 0,
     category: "product",
+    includedInPlane: true,
+  },
+  {
+    id: "ba562ff2-4ac6-8b95-4ff9-6282df23c9eb",
+    name: "Cash Drawer",
+    description: "",
+    part_number: "cdm3",
+    category: "product",
+    type: "Good",
+    cost: "89",
+    cost_usdollar: "89",
+    currency_id: "-99",
+    price: "129",
+    price_usdollar: "129",
+    product_image: "",
+    amount: 0,
+    includedInPlane: true,
+  },
+  {
+    id: "b826201a-794b-1a9f-dd49-623c6af22132",
+    name: "S300 Payment Terminal/Reader",
+    description: "",
+    part_number: "PAXS300",
+    category: "product",
+    type: "Good",
+    cost: "149",
+    cost_usdollar: "149",
+    currency_id: "-99",
+    price: "199",
+    price_usdollar: "199",
+    product_image: "",
+    amount: 0,
+    includedInPlane: true,
+  },
+  {
+    id: "c447f001-b70a-58b7-eab4-6352b046c984",
+    name: "UI 5 Port Switch",
+    description: "",
+    part_number: "UNI5GMINI",
+    category: "product",
+    type: "Good",
+    cost: "40",
+    cost_usdollar: "40",
+    currency_id: "-99",
+    price: "60",
+    price_usdollar: "60",
+    product_image: "",
+    amount: 0,
     includedInPlane: false,
   },
 

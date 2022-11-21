@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../stores/hooks";
@@ -14,7 +14,7 @@ import {
 import { IProduct } from "../../utils/types";
 
 const ProductList = ({ setShowProductDetailsModal }: any) => {
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
   const [params, setParams] = useSearchParams();
 
   const { products } = useAppSelector((state) => state.product);
@@ -24,9 +24,21 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
     e: React.ChangeEvent<HTMLSelectElement>
   ) {
     const qty = Number(e.target.value);
-    dispath(addToCart({ cartItem, qty }));
+    dispatch(addToCart({ cartItem, qty }));
     toast(`${cartItem.name} Add to Cart`);
   }
+
+  function isIncluded() {
+    return products
+      .filter((support) => support.category === "product")
+      .map((includedItem) => {
+        if (includedItem.includedInPlane === true)
+          return dispatch(addToCart({ cartItem: includedItem, qty: 1 }));
+      });
+  }
+  useEffect(() => {
+    isIncluded();
+  }, []);
 
   return (
     <section className="h-screen " id="product">
@@ -54,61 +66,72 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
             <tbody className="">
               {products
                 .filter((product) => product.category === "product")
-                .map((product) => (
-                  <tr key={product.id} className="intro-x ">
-                    <td className="text-center">
-                      <div className="flex">
-                        <div className="w-10 h-10 image-fit zoom-in">
-                          <img
-                            alt=""
-                            className="rounded-full"
-                            src={imgaeHolder || product.product_image}
-                          />
+                .map((product) => {
+                  const setIncludedValue = () => {
+                    if (product.includedInPlane) {
+                      return 1;
+                    } else {
+                      return 0;
+                    }
+                  };
+                  return (
+                    <tr key={product.id} className="intro-x ">
+                      <td className="text-center">
+                        <div className="flex">
+                          <div className="w-10 h-10 image-fit zoom-in">
+                            <img
+                              alt=""
+                              className="rounded-full"
+                              src={imgaeHolder || product.product_image}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td className="">
-                      <button
-                        className="font-medium whitespace-nowrap"
-                        onClick={() => {
-                          setParams({
-                            ...params,
-                            productId: `${product.id}`,
-                          });
+                      <td className="">
+                        <button
+                          className="font-medium whitespace-nowrap"
+                          onClick={() => {
+                            setParams({
+                              ...params,
+                              productId: `${product.id}`,
+                            });
 
-                          setShowProductDetailsModal(true);
-                        }}
-                      >
-                        {product.name}
-                      </button>
-                    </td>
-                    <td className="text-center">
-                      {product.description.substring(0, 25) || product.name}...
-                    </td>
-                    <td className="text-center ">{product.part_number}</td>
-                    <td className="text-center ">$ {product.price}</td>
-                    <td className="text-center ">USD</td>
+                            setShowProductDetailsModal(true);
+                          }}
+                        >
+                          {product.name}
+                        </button>
+                      </td>
+                      <td className="text-center">
+                        {product.description.substring(0, 25) || product.name}
+                        ...
+                      </td>
+                      <td className="text-center ">{product.part_number}</td>
+                      <td className="text-center ">$ {product.price}</td>
+                      <td className="text-center ">USD</td>
 
-                    <td className="text-center">
-                      <select
-                        name=""
-                        id=""
-                        className="form-control"
-                        onChange={(e) => {
-                          onChangeHandler(product, e);
-                        }}
-                      >
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                    </td>
-                  </tr>
-                ))}
+                      <td className="text-center">
+                        <select
+                          name=""
+                          id=""
+                          className="form-control"
+                          defaultValue={setIncludedValue()}
+                          onChange={(e) => {
+                            onChangeHandler(product, e);
+                          }}
+                        >
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
