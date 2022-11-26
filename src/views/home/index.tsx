@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PricingModal from "../pricing/PricingModal";
 import { useAppDispatch, useAppSelector } from "../../stores/hooks";
-import { selectKit } from "../../featuers/stoveStaterkits/kitSlice";
+import { selectKit } from "../../featuers/products/productSlice";
 import {
   TrophyIcon,
   CheckBadgeIcon,
@@ -37,8 +37,6 @@ const HomePage = () => {
     (state) => state.cart
   );
   const { products } = useAppSelector((state) => state.product);
-  const { kits, activeKit } = useAppSelector((state) => state.kit);
-  console.log(activeKit);
 
   const [showOnsiteSupportModal, setShowOnsiteSupportModal] = useState(false);
   const [showSoftwareAddOnModal, setShowSoftwareAddOnModal] = useState(false);
@@ -120,38 +118,42 @@ const HomePage = () => {
       {/* Begin: Starters Image  */}
       <div className="p-8 grid md:grid-cols-2 justify-center gap-8">
         <div className="">
-          {kits.map((kit) => {
-            if (kit.active) {
-              return (
-                <StarterKit
-                  key={kit.id}
-                  kitImg={kit.kitImg}
-                  kitMessage={kit.kitMessage}
-                />
-              );
-            }
-          })}
+          {products
+            .filter((product) => product.category === "kit")
+            .map((kit) => {
+              if (kit.isActive) {
+                return (
+                  <StarterKit
+                    key={kit.id}
+                    kitImg={kit.product_image}
+                    kitMessage={kit.description}
+                  />
+                );
+              }
+            })}
         </div>
 
         <div className="text-2xl mt-4 md:-mt-2">
           <h2 className="text-center">Stove Starter Kits </h2>
 
           <ul>
-            {kits.map(({ kitIcon, active, id, kitName }) => (
-              <div
-                key={id}
-                className={`${
-                  active ? "bg-primary text-white" : "bg-white "
-                }  rounded-md flex p-2 mt-6 justify-center px-10 md:px-32 items-center cursor-pointer`}
-                onClick={() => {
-                  dispatch(selectKit(kitName));
-                  toast(`${kitName} selected`);
-                }}
-              >
-                <ComputerDesktopIcon className="h-8 w-8" />
-                <div className="text-base ml-auto">{kitName}</div>
-              </div>
-            ))}
+            {products
+              .filter((product) => product.category === "kit")
+              .map((kit) => (
+                <div
+                  key={kit.id}
+                  className={`${
+                    kit.isActive ? "bg-primary text-white" : "bg-white "
+                  }  rounded-md flex p-2 mt-6 justify-center px-10 md:px-32 items-center cursor-pointer`}
+                  onClick={() => {
+                    dispatch(selectKit(kit.name));
+                    toast(`${kit.name} selected`);
+                  }}
+                >
+                  <ComputerDesktopIcon className="h-8 w-8" />
+                  <div className="text-base ml-auto">{kit.name}</div>
+                </div>
+              ))}
           </ul>
         </div>
       </div>

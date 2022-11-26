@@ -10,55 +10,82 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
-export const kits: IKits[] = [
+export const products: IProduct[] = [
+  // Kits
   {
     id: "starterKit-1",
-    kitName: "Counter Top Kit",
-    kitIcon: "ComputerDesktopIcon",
-    active: true,
-    kitImg: counterTopKit,
-    kitMessage:
+
+    name: "Counter Top Kit",
+    description:
       "With STOVE your restaurant is always right at your fingertips,offering 24/7 access to our fully interactive management system no matter whereyou are",
+    part_number: "T2sL1D",
+    type: "Good",
+    cost: "35",
+    cost_usdollar: "35",
+    currency_id: "-99",
+    price: "70",
+    price_usdollar: "70",
+    product_image: counterTopKit,
+    amount: 0,
+    category: "kit",
+    isActive: true,
   },
   {
     id: "starterKit-2",
-    kitName: "Guest + Customer Kit",
-    kitIcon: "DevicePhoneMobileIcon",
-    active: false,
-    kitImg: handheldKit,
-    kitMessage:
+
+    name: "Guest + Customer Kit",
+    description:
       "Ensuring your guests a seamless and timely dining experience each and every time can be a challenge, but with STOVE you get endless options to tackle even the toughest of guests.",
+    part_number: "T2sL1D",
+    type: "Good",
+    cost: "35",
+    cost_usdollar: "35",
+    currency_id: "-99",
+    price: "70",
+    price_usdollar: "70",
+    product_image: handheldKit,
+    amount: 0,
+    category: "kit",
+    isActive: false,
   },
   {
     id: "starterKit-3",
-    kitName: "Guest Self-Service Kit",
-    kitIcon: "GiftIcon",
-    active: false,
-    kitImg: guestServiceKit,
-    kitMessage:
-      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
+
+    name: "Guest Self-Service Kit",
+    description:
+      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours.",
+    part_number: "T2sL1D",
+    type: "Good",
+    cost: "35",
+    cost_usdollar: "35",
+    currency_id: "-99",
+    price: "70",
+    price_usdollar: "70",
+    product_image: guestServiceKit,
+    amount: 0,
+    category: "kit",
+    isActive: false,
   },
   {
     id: "starterKit-4",
-    kitName: "Counter Only Kit",
-    kitIcon: "TrophyIcon",
-    active: false,
-    kitImg: guestServiceKit,
-    kitMessage:
-      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
-  },
-  {
-    id: "starterKit-5",
-    kitName: "Table Kit",
-    kitIcon: "UserGroupIcon",
-    active: false,
-    kitImg: guestServiceKit,
-    kitMessage:
-      "STOVE allows your staff and restaurant to better engage with your guests, while ensuring that your system is robust and powerful to support every aspect of your restaurant on your hours. ",
-  },
-];
 
-export const products: IProduct[] = [
+    name: "Custom",
+    description:
+      "With STOVE your restaurant is always right at your fingertips,offering 24/7 access to our fully interactive management system no matter whereyou are",
+    part_number: "T2sL1D",
+    type: "Good",
+    cost: "35",
+    cost_usdollar: "35",
+    currency_id: "-99",
+    price: "70",
+    price_usdollar: "70",
+    product_image: guestServiceKit,
+    amount: 0,
+    category: "kit",
+    isActive: false,
+  },
+  // end of kit
+
   {
     id: "153bd7ae-f099-737a-8963-623df0109300",
     name: "T2s Single Display",

@@ -21,7 +21,8 @@ export interface IProduct {
   amount: number;
   category: string;
   planeItems?: string[];
-  includedInPlane: boolean;
+  includedInPlane?: boolean;
+  isActive?: boolean;
 }
 
 export interface IKits {

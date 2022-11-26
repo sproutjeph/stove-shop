@@ -6,6 +6,7 @@ import { IProduct } from "../../utils/types";
 
 export interface ProductsState {
   products: IProduct[];
+  activeKitName: string;
 }
 
 // export const getProducts = createAsyncThunk("cart/getProducts", async () => {
@@ -18,6 +19,7 @@ export interface ProductsState {
 
 const initialState: ProductsState = {
   products,
+  activeKitName: "Counter Top Kit",
 };
 
 const productSlice = createSlice({
@@ -47,6 +49,31 @@ const productSlice = createSlice({
       if (payload.subscriptionId === proId) {
       }
     },
+
+    selectKit: (state, { payload }: PayloadAction<string>) => {
+      state.products
+        .filter((product) => product.category === "kit")
+        .forEach((kit) => (kit.isActive = false));
+      const selectedKit = state.products.find((kit) => kit.name === payload);
+      if (selectedKit) {
+        selectedKit.isActive = true;
+        state.activeKitName = selectKit.name;
+      }
+
+      if (selectKit.name === "Custom") {
+        const newProducts = state.products.reduce(
+          (acc: IProduct[], product: IProduct) => {
+            product.includedInPlane = false;
+            acc.push(product);
+
+            return acc;
+          },
+          []
+        );
+
+        state.products = newProducts;
+      }
+    },
   },
 
   // extraReducers: (builder) => {
@@ -59,6 +86,7 @@ const productSlice = createSlice({
   // },
 });
 
-export const { setIncludedItemsToSubscriptionPlane } = productSlice.actions;
+export const { setIncludedItemsToSubscriptionPlane, selectKit } =
+  productSlice.actions;
 
 export default productSlice.reducer;

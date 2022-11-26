@@ -17,7 +17,7 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
   const dispatch = useAppDispatch();
   const [params, setParams] = useSearchParams();
 
-  const { products } = useAppSelector((state) => state.product);
+  const { products, activeKitName } = useAppSelector((state) => state.product);
 
   function onChangeHandler(
     cartItem: IProduct,
@@ -38,7 +38,7 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
   }
   useEffect(() => {
     isIncluded();
-  }, []);
+  }, [activeKitName]);
 
   return (
     <section className="h-screen " id="product">
@@ -68,7 +68,7 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
                 .filter((product) => product.category === "product")
                 .map((product) => {
                   const setIncludedValue = () => {
-                    if (product.includedInPlane) {
+                    if (product.includedInPlane && activeKitName !== "Custom") {
                       return 1;
                     } else {
                       return 0;
@@ -156,12 +156,12 @@ const ProductList = ({ setShowProductDetailsModal }: any) => {
                 ...
               </a>
             </li>
-            <li className="page-item">
+            <li className="page-item active">
               <a className="page-link" href="#">
                 1
               </a>
             </li>
-            <li className="page-item active">
+            <li className="page-item ">
               <a className="page-link" href="#">
                 2
               </a>

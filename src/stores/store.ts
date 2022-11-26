@@ -1,14 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import cartReducer from "../featuers/cart/cartSlice";
 import authReducer from "../featuers/auth/authSlice";
-import kitReducer from "../featuers/stoveStaterkits/kitSlice";
 import productReducer from "../featuers/products/productSlice";
 export const store = configureStore({
   reducer: {
     product: productReducer,
     cart: cartReducer,
     auth: authReducer,
-    kit: kitReducer,
   },
 });
 
