@@ -23,6 +23,7 @@ export interface IProduct {
   planeItems?: string[];
   includedInPlane?: boolean;
   isActive?: boolean;
+  isGlobal?: boolean;
 }
 
 export interface IKits {

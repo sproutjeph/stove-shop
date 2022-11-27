@@ -28,12 +28,13 @@ import {
 import {
   calculateTotals,
   selectSubscriptionPrice,
+  addToCart,
 } from "../../featuers/cart/cartSlice";
 
 const HomePage = () => {
   const navigateTo = useNavigate();
   const dispatch = useAppDispatch();
-  const { cartItems, subscriptionFee, totalPrice } = useAppSelector(
+  const { cartItems, subscriptionFee, totalPrice, monthlyFee } = useAppSelector(
     (state) => state.cart
   );
   const { products } = useAppSelector((state) => state.product);
@@ -44,9 +45,20 @@ const HomePage = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [subscriptionId, setSubcriptionId] = useState("");
 
+  function addSubToCart() {
+    const selectedSub = products
+      .filter((prod) => prod.category === "subscription")
+      .find((sub) => Number(sub.price) === subscriptionFee);
+
+    if (selectedSub) {
+      dispatch(addToCart({ cartItem: selectedSub, qty: 1 }));
+    }
+  }
+
   useEffect(() => {
+    addSubToCart();
     dispatch(calculateTotals());
-  }, [cartItems]);
+  }, [cartItems, subscriptionFee, monthlyFee]);
 
   return (
     <>
@@ -220,7 +232,7 @@ const HomePage = () => {
         </div>
         <div className="flex flex-col items-center">
           <h2> monthly fee </h2>
-          <span>${subscriptionFee}</span>
+          <span>${subscriptionFee + monthlyFee}</span>
         </div>
         <div className="flex flex-col items-center">
           <h2>deposit fee </h2>

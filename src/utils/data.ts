@@ -136,6 +136,22 @@ export const products: IProduct[] = [
     includedInPlane: true,
   },
   {
+    id: "ec09d953-d16c-06a1-0de1-6352bbed0308",
+    name: "KDS - Monthly License",
+    description: "",
+    part_number: "KDSLIC",
+    type: "Service",
+    cost: "15",
+    cost_usdollar: "15",
+    currency_id: "-99",
+    price: "15",
+    price_usdollar: "15",
+    product_image: "",
+    category: "product",
+    amount: 0,
+    includedInPlane: true,
+  },
+  {
     id: "c447f001-b70a-58b7-eab4-6352b046c984",
     name: "UI 5 Port Switch",
     description: "",
@@ -242,22 +258,6 @@ export const products: IProduct[] = [
     category: "product",
     includedInPlane: false,
   },
-  {
-    id: "61b166c6-4491-9c5e-5f03-6352bb3b8dec",
-    name: "Gift Cards - Monthly License",
-    description: "",
-    part_number: "GCLIC",
-    category: "product",
-    type: "Service",
-    cost: "20",
-    cost_usdollar: "20",
-    currency_id: "-99",
-    price: "20",
-    price_usdollar: "20",
-    product_image: "",
-    amount: 0,
-    includedInPlane: true,
-  },
 
   // softwares
   {
@@ -275,6 +275,7 @@ export const products: IProduct[] = [
     amount: 0,
     category: "software",
     includedInPlane: true,
+    isGlobal: true,
   },
   {
     id: "b82c885e-197f-1691-cb7a-623c6fee2937",
@@ -291,6 +292,23 @@ export const products: IProduct[] = [
     amount: 0,
     category: "software",
     includedInPlane: false,
+  },
+  {
+    id: "61b166c6-4491-9c5e-5f03-6352bb3b8dec",
+    name: "Gift Cards - Monthly License",
+    description: "",
+    part_number: "GCLIC",
+    category: "software",
+    type: "Service",
+    cost: "20",
+    cost_usdollar: "20",
+    currency_id: "-99",
+    price: "20",
+    price_usdollar: "20",
+    product_image: "",
+    amount: 0,
+    includedInPlane: true,
+    isGlobal: true,
   },
 
   {
@@ -324,6 +342,7 @@ export const products: IProduct[] = [
     category: "software",
     amount: 0,
     includedInPlane: true,
+    isGlobal: true,
   },
   {
     id: "eb811bda-f2fb-e8b7-9c63-631b837ce589",
@@ -357,22 +376,6 @@ export const products: IProduct[] = [
     product_image: "",
     amount: 0,
     includedInPlane: false,
-  },
-  {
-    id: "ec09d953-d16c-06a1-0de1-6352bbed0308",
-    name: "KDS - Monthly License",
-    description: "",
-    part_number: "KDSLIC",
-    type: "Service",
-    cost: "15",
-    cost_usdollar: "15",
-    currency_id: "-99",
-    price: "15",
-    price_usdollar: "15",
-    product_image: "",
-    category: "software",
-    amount: 0,
-    includedInPlane: true,
   },
 
   // support
@@ -538,6 +541,7 @@ export const products: IProduct[] = [
       " KDS (+$15/mo)",
     ],
     includedInPlane: false,
+    isGlobal: true,
   },
 
   {
@@ -566,6 +570,7 @@ export const products: IProduct[] = [
       "Gift Cards (+$20/mo)",
     ],
     includedInPlane: false,
+    isGlobal: true,
   },
   {
     id: "9bd90acd-bbe9-f8f0-c2d9-6314e4090f92",
@@ -593,5 +598,6 @@ export const products: IProduct[] = [
       "Gift Cards",
     ],
     includedInPlane: false,
+    isGlobal: true,
   },
 ];

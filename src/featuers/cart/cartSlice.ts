@@ -7,6 +7,7 @@ export interface CartState {
   totalPrice: number;
   totalCartItems: number;
   subscriptionFee: number;
+  monthlyFee: number;
 }
 
 const initialState: CartState = {
@@ -14,6 +15,7 @@ const initialState: CartState = {
   totalPrice: 0,
   totalCartItems: 0,
   subscriptionFee: 59,
+  monthlyFee: 0,
 };
 
 const cartSlice = createSlice({
@@ -42,12 +44,19 @@ const cartSlice = createSlice({
     calculateTotals: (cartState) => {
       let sumItems = 0;
       let sumEachItemPrice = 0;
+      let monthlyPrice = 0;
       cartState.cartItems.forEach((item) => {
         sumItems += item.amount;
-        sumEachItemPrice += item.amount * Number(item.price);
+        if (item.category !== "software") {
+          sumEachItemPrice += item.amount * Number(item.price);
+        }
+        if (item.category === "software") {
+          monthlyPrice += item.amount * Number(item.price);
+        }
       });
       cartState.totalCartItems = sumItems;
       cartState.totalPrice = sumEachItemPrice;
+      cartState.monthlyFee = monthlyPrice;
     },
     increaseItem: (cartState, { payload }: PayloadAction<{ id: string }>) => {
       const cartItem = cartState.cartItems.find(
@@ -85,6 +94,15 @@ const cartSlice = createSlice({
       { payload }: PayloadAction<number>
     ) => {
       cartState.subscriptionFee = payload;
+    },
+
+    addSubscriptionToCart: (
+      state,
+      { payload }: PayloadAction<{ subscription: IProduct; subFee: number }>
+    ) => {
+      if (state.subscriptionFee === payload.subFee) {
+        addToCart({ cartItem: payload.subscription, qty: 1 });
+      }
     },
   },
 });

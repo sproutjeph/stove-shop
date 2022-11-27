@@ -16,7 +16,7 @@ import {
 const CartPage = () => {
   const navigateTo = useNavigate();
   const dispath = useAppDispatch();
-  const { cartItems, totalPrice, subscriptionFee } = useAppSelector(
+  const { cartItems, totalPrice, subscriptionFee, monthlyFee } = useAppSelector(
     (state) => state.cart
   );
 
@@ -29,7 +29,9 @@ const CartPage = () => {
         </div>
         <div className="flex flex-col items-center">
           <h2> monthly fee </h2>
-          <span className="text-primary text-lg">${subscriptionFee}</span>
+          <span className="text-primary text-lg">
+            ${subscriptionFee + monthlyFee}
+          </span>
         </div>
         <div className="flex flex-col items-center">
           <h2>deposit fee </h2>
@@ -71,15 +73,17 @@ const CartPage = () => {
                     className="rounded-md h-full w-full "
                   />
                 </div>
-                <button
-                  className="btn hidden md:block bg-red-200 mt-12"
-                  onClick={() => {
-                    dispath(removeItem({ id: item.id }));
-                    dispath(calculateTotals());
-                  }}
-                >
-                  Remove
-                </button>
+                {!item.isGlobal && (
+                  <button
+                    className="btn hidden md:block bg-red-200 mt-12"
+                    onClick={() => {
+                      dispath(removeItem({ id: item.id }));
+                      dispath(calculateTotals());
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
               </div>
 
               <div className="max-w-md">
@@ -97,29 +101,31 @@ const CartPage = () => {
                   <h2 className="text-2xl tracking-widest">
                     Price : ${item.price}
                   </h2>
-                  <div className="flex gap-4">
-                    <button
-                      className="py-1 px-2 rounded-md bg-warning"
-                      onClick={() => {
-                        dispath(decreaseItem({ id: item.id }));
-                        dispath(calculateTotals());
-                      }}
-                    >
-                      <MinusIcon className="w-6 h-6" />
-                    </button>
-                    <span className="text-lg  text-green-700">
-                      {item.amount}
-                    </span>
-                    <button
-                      className="py-1 px-2 rounded-md bg-green-500 text-white"
-                      onClick={() => {
-                        dispath(increaseItem({ id: item.id }));
-                        dispath(calculateTotals());
-                      }}
-                    >
-                      <PlusIcon className="w-6 h-6" />
-                    </button>
-                  </div>
+                  {!item.isGlobal && (
+                    <div className="flex gap-4">
+                      <button
+                        className="py-1 px-2 rounded-md bg-warning"
+                        onClick={() => {
+                          dispath(decreaseItem({ id: item.id }));
+                          dispath(calculateTotals());
+                        }}
+                      >
+                        <MinusIcon className="w-6 h-6" />
+                      </button>
+                      <span className="text-lg  text-green-700">
+                        {item.amount}
+                      </span>
+                      <button
+                        className="py-1 px-2 rounded-md bg-green-500 text-white"
+                        onClick={() => {
+                          dispath(increaseItem({ id: item.id }));
+                          dispath(calculateTotals());
+                        }}
+                      >
+                        <PlusIcon className="w-6 h-6" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -131,11 +137,11 @@ const CartPage = () => {
             <h2 className="">Subtotal</h2>
             <h2 className="text-green-500">$ {totalPrice}</h2>
             <h2 className="">Monthly Fee</h2>
-            <h2 className="text-green-500">$ {subscriptionFee}</h2>
+            <h2 className="text-green-500">$ {subscriptionFee + monthlyFee}</h2>
           </div>
           <div className="flex justify-between text-black text-2xl mt-4">
             <h1 className="">Order Total :</h1>
-            <h1 className="">$ {totalPrice + subscriptionFee}</h1>
+            <h1 className="">$ {totalPrice + subscriptionFee + monthlyFee}</h1>
           </div>
         </div>
 
